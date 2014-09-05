@@ -15,7 +15,7 @@ import cucumber.runtime.arquillian.api.Features;
 
 @Features("src/test/resources/bdd/feature/")
 @CucumberOptions(strict = false)
-@RunWith(ArquillianCucumber.class)
+//@RunWith(ArquillianCucumber.class)
 public class BddEngine {
 
 	// @Deployment(testable = false)
