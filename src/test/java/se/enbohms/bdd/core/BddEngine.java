@@ -1,27 +1,42 @@
 package se.enbohms.bdd.core;
 
+import java.io.File;
+
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import se.enbohms.bdd.service.RewardService;
+import se.enbohms.bdd.step.LoginSteps;
 import cucumber.api.CucumberOptions;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.runtime.arquillian.ArquillianCucumber;
 import cucumber.runtime.arquillian.api.Features;
+import cucumber.runtime.arquillian.api.Glues;
 
+@Glues({ LoginSteps.class })
 @Features("src/test/resources/bdd/feature/")
 @CucumberOptions(strict = false)
-//@RunWith(ArquillianCucumber.class)
+@RunWith(ArquillianCucumber.class)
 public class BddEngine {
 
-	// @Deployment(testable = false)
-	// public static Archive<?> createDeployment() {
-	// return Deployments.createOpenUniverseFullDeployment();
-	// }
+	@Deployment(testable = false)
+	public static Archive<?> createDeployment() {
+		WebArchive war = ShrinkWrap.create(WebArchive.class, "BDD_Demo.war");
+		war.addClass(RewardService.class);
+		war.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+		war.setWebXML(new File("src/main/webapp/WEB-INF/web.xml"));
+		return war;
+	}
 
 	// this instance must be injected here, otherwise the upcoming steps can't
 	// utilize the drone instance

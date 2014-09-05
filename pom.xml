@@ -158,7 +158,6 @@
 		</dependency>
 
 		<!-- For Arquillian Graphene -->
-
 		<dependency>
 			<groupId>org.jboss.arquillian.graphene</groupId>
 			<artifactId>graphene-webdriver</artifactId>
