@@ -6,7 +6,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.Dimension;
@@ -33,7 +32,8 @@ public class BddEngine {
 	public static Archive<?> createDeployment() {
 		WebArchive war = ShrinkWrap.create(WebArchive.class, "BDD_Demo.war");
 		war.addClass(RewardService.class);
-		war.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+
+		war.addAsManifestResource(new File("src/main/webapp/WEB-INF/web.xml"));
 		war.setWebXML(new File("src/main/webapp/WEB-INF/web.xml"));
 		return war;
 	}

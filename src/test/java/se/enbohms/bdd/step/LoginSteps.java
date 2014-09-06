@@ -1,6 +1,9 @@
 package se.enbohms.bdd.step;
 
+import java.net.URL;
+
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.test.api.ArquillianResource;
 import org.openqa.selenium.WebDriver;
 
 import cucumber.api.java.en.And;
@@ -18,10 +21,13 @@ public class LoginSteps {
 
 	@Drone
 	WebDriver driver;
+	
+	@ArquillianResource
+	URL deploymentUrl;
 
 	@Given("a user on start page")
 	public void given_a_user_on_start_page() {
-		System.out.println(" Given zzzzzz");
+		driver.get(deploymentUrl+"index.xhtml");
 	}
 
 	@And("the user is not logged in")
