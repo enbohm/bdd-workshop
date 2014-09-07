@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 import se.enbohms.bdd.service.RewardService;
@@ -15,6 +16,7 @@ import se.enbohms.bdd.service.RewardService;
  *
  */
 public class Deployments {
+	private static final String WEBAPP_SRC = "src/main/webapp";
 
 	private Deployments() {
 		// // Suppresses default constructor, ensuring non-instantiability.
@@ -27,9 +29,13 @@ public class Deployments {
 	public static Archive<?> createFullDeployment() {
 		WebArchive war = ShrinkWrap.create(WebArchive.class, "BDD_Demo.war");
 		war.addClass(RewardService.class);
+		war.addAsWebResource(new File(WEBAPP_SRC,"index.xhtml"));
 
-		war.addAsManifestResource(new File("src/main/webapp/WEB-INF/web.xml"));
-		war.setWebXML(new File("src/main/webapp/WEB-INF/web.xml"));
+		war.addAsManifestResource(new File(WEBAPP_SRC,"/WEB-INF/web.xml"));
+		war.setWebXML(new File(WEBAPP_SRC, "/WEB-INF/web.xml"));
+		war.addAsWebInfResource(
+                new StringAsset("<faces-config version=\"2.0\"/>"),
+                "faces-config.xml");
 		return war;
 	}
 }
