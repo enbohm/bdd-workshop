@@ -32,16 +32,16 @@ public class LoginSteps {
 
 	@And("the user is not logged in")
 	public void and_user_not_logged_in() {
-		System.out.println(" And zzzzzz");
+		System.out.println(" And user is not logged in...");
 	}
 
-	@When("the fills in username (.+) and password (.+)")
+	@When("user fills in username (.+) and password (.+)")
 	public void when_fills_in_credentials(String userName, String password) {
-		System.out.println(" When zzzzzz");
+		System.out.println(" When user fills in username and password");
 	}
 
 	@Then("the user should be redirected to MyPages")
 	public void then_user_should_be_redirected_to_mypages() {
-		System.out.println(" Then zzzzzz");
+		System.out.println(" Then the user should be redirected to MyPages");
 	}
 }
