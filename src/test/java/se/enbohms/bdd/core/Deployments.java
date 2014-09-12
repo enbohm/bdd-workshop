@@ -28,9 +28,14 @@ public class Deployments {
 	 */
 	public static Archive<?> createFullDeployment() {
 		WebArchive war = ShrinkWrap.create(WebArchive.class, "BDD_Demo.war");
-		war.addClass(RewardService.class);
+		war.addPackage("se.enbohms.bdd.entity");
+		war.addPackage("se.enbohms.bdd.facade");
+		war.addPackage("se.enbohms.bdd.service");
+        
 		war.addAsWebResource(new File(WEBAPP_SRC,"index.xhtml"));
-
+		war.addAsWebResource(new File(WEBAPP_SRC,"resources/css/styles.css"), "/resources/css/styles.css");
+		war.addAsWebResource(new File(WEBAPP_SRC,"resources/images/cinematicket.jpeg"), "/resources/images/styles.jpeg");
+        
 		war.addAsManifestResource(new File(WEBAPP_SRC,"/WEB-INF/web.xml"));
 		war.setWebXML(new File(WEBAPP_SRC, "/WEB-INF/web.xml"));
 		war.addAsWebInfResource(

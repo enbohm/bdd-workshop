@@ -23,35 +23,34 @@ import cucumber.runtime.arquillian.api.Glues;
 @RunWith(ArquillianCucumber.class)
 public class BddEngine {
 
-	@Deployment(testable = false)
-	public static Archive<?> createDeployment() {
-		return Deployments.createFullDeployment();
-	}
+    @Deployment(testable = false)
+    public static Archive<?> createDeployment() {
+        return Deployments.createFullDeployment();
+    }
 
-	// this instance must be injected here, otherwise the upcoming steps can't
-	// utilize the drone instance
-	@Drone
-	WebDriver driver;
+    // this instance must be injected here, otherwise the upcoming steps can't
+    // utilize the drone instance
+    @Drone
+    WebDriver driver;
 
-	/**
-	 * Will run after each scenario. Embeds a screenshot of the current view of
-	 * the scenario fails
-	 * 
-	 * @param scenario
-	 * @throws Exception
-	 *             if anything goes wrong
-	 */
-	@After
-	public void afterScenario(Scenario scenario) throws Exception {
-		if (scenario.isFailed()) {
-			embedScreeenshotDesktop(scenario);
-		}
-	}
+    /**
+     * Will run after each scenario. Embeds a screenshot of the current view of
+     * the scenario fails
+     * 
+     * @param scenario
+     * @throws Exception
+     *             if anything goes wrong
+     */
+    @After
+    public void afterScenario(Scenario scenario) throws Exception {
+        if (scenario.isFailed()) {
+            embedScreeenshotDesktop(scenario);
+        }
+    }
 
-	private void embedScreeenshotDesktop(Scenario scenario) {
-		driver.manage().window().setSize(new Dimension(768, 1024));
-		byte[] screenshot = ((TakesScreenshot) driver)
-				.getScreenshotAs(OutputType.BYTES);
-		scenario.embed(screenshot, "image/png");
-	}
+    private void embedScreeenshotDesktop(Scenario scenario) {
+        driver.manage().window().setSize(new Dimension(768, 1024));
+        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        scenario.embed(screenshot, "image/png");
+    }
 }

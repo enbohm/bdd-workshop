@@ -1,7 +1,10 @@
 package se.enbohms.bdd.service;
 
 import static org.fest.assertions.Assertions.*;
+
 import org.junit.Test;
+
+import se.enbohms.bdd.entity.User;
 
 /**
  * Test client for the {@link RewardService}
@@ -17,7 +20,7 @@ public class RewardServiceTest {
 		RewardService service = new RewardService();
 
 		// when
-		Integer result = service.getCurrentPoints();
+		Integer result = service.getCurrentPoints(new User());
 
 		// then
 		assertThat(result).isEqualTo(100);
