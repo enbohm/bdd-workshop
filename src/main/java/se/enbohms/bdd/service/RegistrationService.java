@@ -22,9 +22,13 @@ public class RegistrationService {
     /**
      * Registers a new user
      * @param user
+     * @throws UserExistException if user already exist
      */
-    public void register(User user) {
+    public void register(User user) throws UserExistException {
         System.out.println("Register new user "+user);
+        if (users.containsKey(user.getUserName())) {
+            throw new UserExistException();
+        }
         users.put(user.getUserName(), user);
     }
     
