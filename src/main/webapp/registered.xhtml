@@ -13,19 +13,19 @@
 
 <body>
     <div id="container">
-        <header> <h1>Welcome. Login to Club Cinema!</h1>
+        <header> 
+            <h1>Congratz #{registrationFacade.user}!</h1>
+            <h2>You are now registered at Club Cinema!</h2>
         </header>
         
         <div id="login">
-            <h3>Please enter user name and password.</h3>
-            <form jsf:id="registration-form" jsf:prependId="false">
-                <input type="text" jsf:id="userName" placeholder="Enter user name" jsf:value="#{registrationFacade.user.userName}" data-bdd-id="userName" class="inputField"/>
-                <input type="password" jsf:id="password" placeholder="Enter password" jsf:value="#{registrationFacade.user.firstName}" data-bdd-id="firstName" class="inputField"/>
-                <button jsf:action="#{registrationFacade.register}" data-bdd-id="registerButton">Login</button>
-           </form>
+            
+            
         </div>
         
-        <div id="content"></div>
+        <div id="content">
+            <h3>Your current points are: <span id="points" data-bdd-id="point">#{registrationFacade.user.rewardPoints}</span></h3>
+        </div>
         
         <footer>  
             <img src="/resources/images/cinematicket.jpeg" alt="Cinema Ticket" id="ticket" /> 

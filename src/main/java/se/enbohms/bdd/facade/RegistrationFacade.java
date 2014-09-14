@@ -28,7 +28,7 @@ public class RegistrationFacade {
      */
     public String register() {
         registrationService.register(user);
-        return "registered.xhtml?faces-redirect=true";
+        return "registered.xhtml";
     }
 
     public User getUser() {

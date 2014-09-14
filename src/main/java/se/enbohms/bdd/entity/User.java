@@ -50,6 +50,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName + ", rewardPoints=" + rewardPoints + "]";
+        return firstName + " " + lastName + " (username " + userName + ")";
     }
 }
