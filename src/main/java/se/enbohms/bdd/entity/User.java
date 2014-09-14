@@ -1,5 +1,7 @@
 package se.enbohms.bdd.entity;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Represents a user in Cinema Reward feature
  * 
@@ -8,6 +10,7 @@ package se.enbohms.bdd.entity;
  */
 public class User {
 
+    @NotNull(message = "User name must not be empty!")
     private String userName;
     private String firstName;
     private String lastName;

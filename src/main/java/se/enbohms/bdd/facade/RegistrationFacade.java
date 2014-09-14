@@ -26,8 +26,9 @@ public class RegistrationFacade {
     /**
      * Registers the user by delegation to {@link RegistrationService}
      */
-    public void register() {
+    public String register() {
         registrationService.register(user);
+        return "registered.xhtml?faces-redirect=true";
     }
 
     public User getUser() {

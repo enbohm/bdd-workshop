@@ -7,8 +7,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
-import se.enbohms.bdd.service.RewardService;
-
 /**
  * Utility class which is responsible for creating different deployments
  * 

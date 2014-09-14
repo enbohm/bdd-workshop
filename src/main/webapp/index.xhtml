@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:jsf="http://xmlns.jcp.org/jsf"
-    xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 <head>
     <title>BDD Demo</title>
@@ -12,26 +12,27 @@
 </head>
 
 <body>
-    <header> <h1>Welcome. Login or register to Club Cinema!</h1>
-    </header>
-    <nav>
+    <div id="container">
+        <header> <h1>Welcome. Login or register to Club Cinema!</h1>
+        </header>
+       
+        <div id="registration">
+            <h3>New members sign up and earn points!</h3>
+            <form jsf:id="registration-form" jsf:prependId="false">
+                <input type="text" jsf:id="userName" placeholder="Enter user name" jsf:value="#{registrationFacade.user.userName}" data-bdd-id="userName" class="inputField"/>
+                <input type="text" jsf:id="firstName" placeholder="Enter first name" jsf:value="#{registrationFacade.user.firstName}" data-bdd-id="firstName" class="inputField"/>
+                <input type="text" jsf:id="lastName" placeholder="Enter last name" jsf:value="#{registrationFacade.user.lastName}" data-bdd-id="lastName" class="inputField"/>
+                <button jsf:action="#{registrationFacade.register}" data-bdd-id="registerButton">Register</button>(Already registered? Login <a href="">here</a>)
+           </form>
+        </div>
         
-    </nav>
-    
-    <div id="registration">
-        <h3>New members sign up and ear points!</h3>
-        <form jsf:id="registration-form" jsf:prependId="false">
-            <input type="text" jsf:id="userName" placeholder="Enter user name" jsf:value="#{registrationFacade.user.userName}" data-bdd-id="userName" class="inputField"/>
-            <input type="text" jsf:id="firstName" placeholder="Enter first name" jsf:value="#{registrationFacade.user.firstName}" data-bdd-id="firstName" class="inputField"/>
-            <input type="text" jsf:id="lastName" placeholder="Enter last name" jsf:value="#{registrationFacade.user.lastName}" data-bdd-id="lastName" class="inputField"/>
-            <button jsf:action="#{registrationFacade.register}" data-bdd-id="registerButton">Register</button>(Already registers? Login <a href="">here</a>)
-       </form>
+        <div id="content">
+            <h:messages style="color:red"/>
+        </div>
+        
+        <footer>  
+            <img src="/resources/images/cinematicket.jpeg" alt="Cinema Ticket" id="ticket" /> 
+        </footer>
     </div>
-    
-    <div id="content"></div>
-    
-    <footer>  
-        <img src="/resources/images/cinematicket.jpeg" alt="Cinema Ticket" id="ticket" /> 
-    </footer>
 </body>
 </html>
