@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<html xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:jsf="http://xmlns.jcp.org/jsf"
-    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<head>
+<head jsf:id="head">
     <title>BDD Demo</title>
-    <!-- <script jsf:target="body" jsf:name="story-page.js"/> -->
     <link href="/resources/css/styles.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8"></meta>
 </head>
@@ -18,16 +18,18 @@
        
         <div id="registration">
             <h3>New members sign up and earn points!</h3>
-            <form jsf:id="registration-form" jsf:prependId="false">
-                <input type="text" jsf:id="userName" placeholder="Enter user name" jsf:value="#{registrationFacade.user.userName}" data-bdd-id="userName" class="inputField"/>
+            <form jsf:id="registration-form">
+                <input type="text" jsf:id="userName" placeholder="Enter user name" jsf:value="#{registrationFacade.user.userName}" data-bdd-id="userName" class="inputField">
+                    <f:ajax listener="#{registrationFacade.validateUser}" render="message" event="keyup"/>
+                </input>
                 <input type="text" jsf:id="firstName" placeholder="Enter first name" jsf:value="#{registrationFacade.user.firstName}" data-bdd-id="firstName" class="inputField"/>
                 <input type="text" jsf:id="lastName" placeholder="Enter last name" jsf:value="#{registrationFacade.user.lastName}" data-bdd-id="lastName" class="inputField"/>
-                <button jsf:action="#{registrationFacade.register}" data-bdd-id="registerButton">Register</button>(Already registered? Login <a href="">here</a>)
+                <button jsf:action="#{registrationFacade.register}" data-bdd-id="registerButton">Register</button>(Already registered? Login <a href="login.xhtml">here</a>)
            </form>
         </div>
         
         <div id="content">
-            <h:messages style="color:red"/>
+            <h:messages id="message" style="color:red"/>
         </div>
         
         <footer>  

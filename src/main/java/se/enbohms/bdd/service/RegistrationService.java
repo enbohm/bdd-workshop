@@ -25,11 +25,20 @@ public class RegistrationService {
      * @throws UserExistException if user already exist
      */
     public void register(User user) throws UserExistException {
-        System.out.println("Register new user "+user);
         if (users.containsKey(user.getUserName())) {
             throw new UserExistException();
         }
         users.put(user.getUserName(), user);
+    }
+    
+    
+    /**
+     * 
+     * @param userName
+     * @return {@code true} if user name exist {@code false} otherwise
+     */
+    public boolean userExist(String userName){
+        return users.containsKey(userName);
     }
     
     /**
