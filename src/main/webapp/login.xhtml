@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:jsf="http://xmlns.jcp.org/jsf"
-    xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 <head>
     <title>BDD Demo</title>
@@ -16,16 +17,24 @@
         <header> <h1>Welcome. Login to Club Cinema!</h1>
         </header>
         
-        <div id="login">
-            <h3>Please enter user name and password.</h3>
-            <form jsf:id="registration-form" jsf:prependId="false">
-                <input type="text" jsf:id="userName" placeholder="Enter user name" jsf:value="#{registrationFacade.user.userName}" data-bdd-id="userName" class="inputField"/>
-                <input type="password" jsf:id="password" placeholder="Enter password" jsf:value="#{registrationFacade.user.firstName}" data-bdd-id="firstName" class="inputField"/>
-                <button jsf:action="#{registrationFacade.register}" data-bdd-id="registerButton">Login</button>
-           </form>
-        </div>
+        <ui:fragment rendered="#{empty loginFacade.user}">
+            <div id="login">
+                <h3>Please enter user name and password.</h3>
+                <form jsf:id="login-form">
+                    <input type="text" jsf:id="userName" placeholder="Enter user name" jsf:value="#{loginFacade.userName}" data-bdd-id="userName" class="inputField"/>
+                    <input type="password" placeholder="Enter password" class="inputField"/>
+                    <button jsf:action="#{loginFacade.login}" data-bdd-id="loginButton">Login</button>
+               </form>
+            </div>
+        </ui:fragment>
         
-        <div id="content"></div>
+        <div id="content">
+            <ui:fragment rendered="#{not empty loginFacade.user}">
+                Welcome back #{loginFacade.user.firstName} #{loginFacade.user.lastName}! 
+                <br/><form jsf:id="logout-form"><a href="#" jsf:action="#{loginFacade.logout}">logout</a></form>
+            </ui:fragment>
+            <h:messages style="color:red"/>
+        </div>
         
         <footer>  
             <img src="/resources/images/cinematicket.jpeg" alt="Cinema Ticket" id="ticket" /> 
