@@ -45,7 +45,7 @@ public class RegistrationFacade {
      * 
      * @param userName
      */
-    public void validateUser(AjaxBehaviorEvent event) {
+    public void checkUserName(AjaxBehaviorEvent event) {
         if (registrationService.userExist(user.getUserName())) {
             FacesContext.getCurrentInstance().addMessage("User already exist", new FacesMessage("User already exist"));
         }

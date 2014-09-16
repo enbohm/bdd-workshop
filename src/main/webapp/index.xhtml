@@ -20,7 +20,7 @@
             <h3>New members sign up and earn points!</h3>
             <form jsf:id="registration-form">
                 <input type="text" jsf:id="userName" placeholder="Enter user name" jsf:value="#{registrationFacade.user.userName}" data-bdd-id="userName" class="inputField">
-                    <f:ajax listener="#{registrationFacade.validateUser}" render="message" event="keyup"/>
+                    <f:ajax listener="#{registrationFacade.checkUserName}" render="message" event="keyup"/>
                 </input>
                 <input type="text" jsf:id="firstName" placeholder="Enter first name" jsf:value="#{registrationFacade.user.firstName}" data-bdd-id="firstName" class="inputField"/>
                 <input type="text" jsf:id="lastName" placeholder="Enter last name" jsf:value="#{registrationFacade.user.lastName}" data-bdd-id="lastName" class="inputField"/>
